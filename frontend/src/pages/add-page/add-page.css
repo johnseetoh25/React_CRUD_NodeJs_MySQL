@@ -1,0 +1,22 @@
+.AddPageUI {
+    color: aqua;
+}
+
+form > .insertFormWrapper{
+    display: table;
+}
+
+.formRow{
+    display: table-row;
+}
+
+.formRow > .label{
+    display: table-cell;
+    padding: 5px 20px;
+
+}
+
+.formRow > input{
+    display: table-cell;
+}
+
