@@ -11,12 +11,13 @@ export const getUsers = (_, res) => {
 }
 
 export const addUser = (req, res) => {
-  const q = "INSERT INTO users(`name`, `email`, `date`) VALUES(?)";
+  const q = "INSERT INTO users(`name`, `email`, `date`, `time`) VALUES(?)";
   
   const values = [
     req.body.name,
     req.body.email,
     req.body.date,
+    req.body.time,
   ];
   
   db.query(q, [values], (err) => {

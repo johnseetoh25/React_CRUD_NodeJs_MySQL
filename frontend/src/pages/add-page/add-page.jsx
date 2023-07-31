@@ -30,11 +30,26 @@ const AddPage = () => {
         }));
     };
 
-    const handleTimeChange = (date) => {
+    const handleTimeChange = (time) => {
+        
+        // Check if the selected period is 'PM' (post meridiem)
+        const isPM = time.format('a') === 'pm';
+
+        // Get the hours and add 12 if it's 'PM'
+        let hours = parseInt(time.format('hh'), 10);
+        if (isPM) {
+            hours += 12;
+        }
+
+        // Convert the hours to a two-digit string (e.g., 01, 02, ..., 12)
+        const formattedHours = hours.toString().padStart(2, '0');
+
+        // Update the state with the adjusted time
         setUser((prev) => ({
             ...prev,
-            date: date.format('YYYY-MM-DD'),
+            time: `${formattedHours}:${time.format('mm')}:00`,
         }));
+
     };
 
     const handleClick = async (e) =>{
@@ -62,7 +77,7 @@ const AddPage = () => {
             <div className='add-page-subtitle'>Date Time Picker Input</div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker format='DD/MM/YYYY' value={user.date} onChange={handleDateChange} name='date' />
-                <TimePicker format='HH:MM A' value={user.time} onChange={handleTimeChange} name='time'/>
+                <TimePicker format='HH:mm a' value={user.time} onChange={handleTimeChange} name='time' />
             </LocalizationProvider>
 
             <div className='add-page-subtitle'>Image Input</div>
