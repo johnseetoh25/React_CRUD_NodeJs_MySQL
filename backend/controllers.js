@@ -10,6 +10,28 @@ export const getUsers = (_, res) => {
     });
 }
 
+export const getUsersById = (req, res) => {
+  const { id } = req.params;
+
+  const q = "SELECT * FROM users WHERE id = ?";
+
+  db.query(q, [id], (err, results) => {
+    if (err) {
+      console.error("Error retrieving user:", err);
+      res.status(500).json({ error: "Error retrieving user" });
+      return;
+    }
+
+    if (results.length === 0) {
+      res.status(404).json({ error: "User not found" });
+      return;
+    }
+
+    res.json(results[0]);
+  });
+
+}
+
 export const addUser = (req, res) => {
   const q = "INSERT INTO users(`name`, `email`, `date`, `time`) VALUES(?)";
   

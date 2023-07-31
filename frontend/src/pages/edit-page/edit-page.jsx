@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../edit-page/edit-page.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { TextField } from "@mui/material";
 
 const EditPage = () =>{
     const { id } = useParams();
@@ -28,9 +29,10 @@ const EditPage = () =>{
     }, [id]);
 
     const handleChange = (e) => {
-        setUser((user)=>(
-          { ...user, [e.target.name]: e.target.value }
-        ));
+        setUser((prev)=>(
+          { ...prev,
+            [e.target.name]: e.target.value 
+          }));
     };
 
     const handleSubmit = async (e) => {
@@ -44,22 +46,23 @@ const EditPage = () =>{
     
     return (
         <div className='EditPageUI'>
-           Edit Page
-           <form onSubmit={handleSubmit}>
-                <div className="insertFormWrapper" key={id} >
-                    <div className="formRow">
-                        <div className="label">Name</div>
-                        <input type="text" name="name" value={userValue.name}
-                        onChange={handleChange} 
-                         />
-                    </div>
-                    <div className="formRow">
-                        <div className="label">Email</div>
-                        <input type="text" name="email" onChange={handleChange} value={userValue.email} />
-                    </div>
-                </div>
-                
-            </form>
+          Edit Page
+
+          <TextField
+            onChange={handleChange}
+            name="name"
+            value={userValue.name}
+            label="Name"
+          />
+
+          <TextField
+            onChange={handleChange}
+            name="email"
+            value={userValue.email}
+            label="Email"
+          />
+           
+           
             <button type="submit" onClick={handleSubmit}>Submit</button>
         </div>
     );
