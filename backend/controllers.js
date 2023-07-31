@@ -33,11 +33,12 @@ export const getUsersById = (req, res) => {
 }
 
 export const addUser = (req, res) => {
-  const q = "INSERT INTO users(`name`, `email`, `date`, `time`) VALUES(?)";
+  const q = "INSERT INTO users(`name`, `email`, `gender`, `date`, `time`) VALUES(?)";
   
   const values = [
     req.body.name,
     req.body.email,
+    req.body.gender,
     req.body.date,
     req.body.time,
   ];
