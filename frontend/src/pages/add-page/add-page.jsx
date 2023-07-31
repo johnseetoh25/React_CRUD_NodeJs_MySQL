@@ -6,13 +6,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
 
 const AddPage = () => {
     const [user, setUser] = useState({
         name: "",
         email: "",
         date: "",
+        time: "",
     });
 
     const handleChange = (e) =>{
@@ -30,12 +30,19 @@ const AddPage = () => {
         }));
     };
 
+    const handleTimeChange = (date) => {
+        setUser((prev) => ({
+            ...prev,
+            date: date.format('YYYY-MM-DD'),
+        }));
+    };
+
     const handleClick = async (e) =>{
         e.preventDefault()
         try {
-            await axios.post("http://localhost:8800/users", user)
+            await axios.post("http://localhost:8800/users", user);
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     }
 
@@ -55,7 +62,7 @@ const AddPage = () => {
             <div className='add-page-subtitle'>Date Time Picker Input</div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker format='DD/MM/YYYY' value={user.date} onChange={handleDateChange} name='date' />
-                <TimePicker />
+                <TimePicker format='HH:MM A' value={user.time} onChange={handleTimeChange} name='time'/>
             </LocalizationProvider>
 
             <div className='add-page-subtitle'>Image Input</div>
