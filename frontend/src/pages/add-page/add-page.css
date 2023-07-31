@@ -1,22 +1,15 @@
-.AddPageUI {
-    color: aqua;
+.add-page-layout{
+    margin: 30px;
 }
 
-form > .insertFormWrapper{
-    display: table;
+.add-page-title{
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 
-.formRow{
-    display: table-row;
+.add-page-subtitle{
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 10px;
 }
-
-.formRow > .label{
-    display: table-cell;
-    padding: 5px 20px;
-
-}
-
-.formRow > input{
-    display: table-cell;
-}
-

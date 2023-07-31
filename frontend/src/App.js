@@ -5,18 +5,14 @@ import React from 'react';
 import HomePage from './pages/home-page/home-page';
 import AddPage from './pages/add-page/add-page';
 import EditPage from './pages/edit-page/edit-page';
+import Navbar from './components/navbar';
 
 function App() {
   return (
     <div className="App">
       
       <BrowserRouter>
-        <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/add">Add Data</Link></li>
-          </ul>
-        </nav>
+        <Navbar/>
 
         <Routes>
           <Route index element = {<HomePage />}></Route>

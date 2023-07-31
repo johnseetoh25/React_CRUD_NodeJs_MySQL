@@ -35,6 +35,7 @@ const HomePage = () => {
                     <div className='user' key={user.id}>
                         <h3>{user.name}</h3>
                         <p>{user.email}</p>
+                        <p>{user.date}</p>
                         <button onClick={() => handleDelete(user.id)}>Delete</button>
                         <button><Link variant="info" to={"/edit/" + user.id}>Edit</Link></button>
                     </div>
